@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System Design in Practice</title>
+  <meta name="description" content="Learning system design by building it: real-life analogies, runnable Python, and interactive visualisations.">
+  <style>
+    :root {
+      --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --muted: #64748b;
+      --border: #e2e8f0; --accent: #6366f1; --accent-2: #0ea5e9; --done: #22c55e;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120; --surface: #111a2e; --text: #e2e8f0; --muted: #94a3b8;
+        --border: #1e293b; --accent: #a78bfa; --accent-2: #38bdf8; --done: #4ade80;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.6 "Segoe UI", -apple-system, Helvetica, Arial, sans-serif;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+    header { padding: 72px 0 48px; }
+    .eyebrow { color: var(--muted); letter-spacing: .2em; font-size: 13px; font-weight: 600; text-transform: uppercase; }
+    h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 12px 0 16px; }
+    h1 span {
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { color: var(--muted); font-size: 18px; max-width: 620px; margin: 0 0 28px; }
+    .btn {
+      display: inline-block; padding: 10px 18px; border-radius: 10px; font-weight: 600;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text); margin: 0 8px 8px 0;
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn:hover { text-decoration: none; filter: brightness(1.08); }
+
+    .progress { margin: 36px 0 0; max-width: 520px; }
+    .bar { height: 10px; border-radius: 99px; background: var(--border); overflow: hidden; }
+    .bar > div { height: 100%; background: linear-gradient(90deg, var(--accent-2), var(--accent)); border-radius: 99px; }
+    .progress small { color: var(--muted); }
+
+    section { padding: 32px 0; }
+    h2 { font-size: 24px; margin: 0 0 18px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    a.card { color: inherit; display: block; }
+    a.card:hover { transform: translateY(-3px); border-color: var(--accent); text-decoration: none; }
+    .card .tag { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
+    .card h3 { margin: 6px 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .status { float: right; font-size: 12px; font-weight: 700; }
+    .status.done { color: var(--done); }
+    .status.soon { color: var(--muted); }
+    .card.soon { opacity: .6; }
+
+    .steps { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .step { text-align: center; padding: 16px 10px; }
+    .step b { display: block; font-size: 28px; }
+
+    footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">LLD → HLD · 62 days · built in public</div>
+      <h1>System Design<br><span>in Practice</span></h1>
+      <p class="lead">Learning system design by building it. Every concept comes with a real-life analogy, runnable Python, tests and an interactive visual.</p>
+      <a class="btn primary" href="https://github.com/vivek27kgp/system-design-in-practice">View on GitHub</a>
+      <a class="btn" href="https://github.com/vivek27kgp/system-design-in-practice/blob/main/PROGRESS.md">Progress tracker</a>
+      <div class="progress">
+        <div class="bar"><div id="bar-fill" style="width:0"></div></div>
+        <small id="bar-label"></small>
+      </div>
+    </header>
+
+    <section>
+      <h2>🧭 The method</h2>
+      <div class="steps">
+        <div class="card step"><b>🧠</b>Real-life analogy</div>
+        <div class="card step"><b>⚡</b>Tiny example</div>
+        <div class="card step"><b>🛠️</b>Build + test</div>
+        <div class="card step"><b>👀</b>Visualise</div>
+        <div class="card step"><b>🚀</b>Ship daily</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>👀 Interactive visuals</h2>
+      <div class="grid" id="viz-grid"></div>
+    </section>
+
+    <section>
+      <h2>📅 Daily log</h2>
+      <div class="grid" id="day-grid"></div>
+    </section>
+
+    <footer>
+      Follow along with <b>#SystemDesignInPractice</b> ·
+      <a href="https://github.com/vivek27kgp/system-design-in-practice">github.com/vivek27kgp/system-design-in-practice</a>
+    </footer>
+  </div>
+
+  <script>
+    // ── Update these two lists each day ──────────────────────────────
+    const TOTAL_DAYS = 62;
+    const REPO = "https://github.com/vivek27kgp/system-design-in-practice/tree/main/";
+    const days = [
+      { day: 1, title: "OOP Pillars", analogy: "🚗 A car: sealed engine, pedal, shared wheels, different horns", path: "lld/day01_oop_pillars" },
+    ];
+    const upcoming = { day: 2, title: "Class Relationships", analogy: "🏠 House–rooms vs team–players: composition over inheritance" };
+    const visuals = [
+      // { title: "Composition vs Inheritance", day: 2, href: "viz/composition.html", blurb: "..." },
+    ];
+    // ─────────────────────────────────────────────────────────────────
+
+    const pct = Math.round((days.length / TOTAL_DAYS) * 100);
+    document.getElementById("bar-fill").style.width = Math.max(pct, 2) + "%";
+    document.getElementById("bar-label").textContent = `Day ${days.length} of ${TOTAL_DAYS} · ${pct}% complete`;
+
+    const pad = n => String(n).padStart(2, "0");
+    const dayGrid = document.getElementById("day-grid");
+    for (const d of days) {
+      dayGrid.insertAdjacentHTML("beforeend", `
+        <a class="card" href="${REPO}${d.path}">
+          <span class="status done">✓ DONE</span>
+          <div class="tag">DAY ${pad(d.day)}</div><h3>${d.title}</h3><p>${d.analogy}</p>
+        </a>`);
+    }
+    dayGrid.insertAdjacentHTML("beforeend", `
+      <div class="card soon">
+        <span class="status soon">NEXT</span>
+        <div class="tag">DAY ${pad(upcoming.day)}</div><h3>${upcoming.title}</h3><p>${upcoming.analogy}</p>
+      </div>`);
+
+    const vizGrid = document.getElementById("viz-grid");
+    if (visuals.length === 0) {
+      vizGrid.innerHTML = `<div class="card soon"><div class="tag">COMING ON DAY 02</div><h3>First animation</h3><p>Inheritance mess → composition, animated step by step.</p></div>`;
+    }
+    for (const v of visuals) {
+      vizGrid.insertAdjacentHTML("beforeend", `
+        <a class="card" href="${v.href}"><div class="tag">DAY ${pad(v.day)}</div><h3>${v.title}</h3><p>${v.blurb}</p></a>`);
+    }
+  </script>
+</body>
+</html>

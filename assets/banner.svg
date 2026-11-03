@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="System Design in Practice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="300" rx="20" fill="url(#bg)"/>
+  <rect width="1200" height="300" rx="20" fill="url(#grid)"/>
+
+  <!-- distributed-system motif: nodes + links -->
+  <g stroke="url(#accent)" stroke-opacity="0.55" stroke-width="2" fill="none">
+    <path d="M820 80 L940 60 L1060 110 L1000 210 L880 220 L820 80 Z"/>
+    <path d="M940 60 L1000 210 M820 80 L1060 110 M880 220 L1060 110"/>
+  </g>
+  <g fill="#0f172a" stroke-width="3">
+    <circle cx="820" cy="80" r="14" stroke="#38bdf8"/>
+    <circle cx="940" cy="60" r="18" stroke="#818cf8"/>
+    <circle cx="1060" cy="110" r="14" stroke="#a78bfa"/>
+    <circle cx="1000" cy="210" r="16" stroke="#38bdf8"/>
+    <circle cx="880" cy="220" r="12" stroke="#a78bfa"/>
+  </g>
+  <g fill="#e0e7ff">
+    <circle cx="940" cy="60" r="6"/>
+    <circle cx="1000" cy="210" r="5"/>
+  </g>
+
+  <g font-family="Segoe UI, -apple-system, Helvetica, Arial, sans-serif">
+    <text x="70" y="108" fill="#94a3b8" font-size="20" letter-spacing="4" font-weight="600">LLD  →  HLD  ·  62 DAYS</text>
+    <text x="68" y="170" fill="#f8fafc" font-size="56" font-weight="700">System Design</text>
+    <text x="68" y="226" fill="url(#accent)" font-size="56" font-weight="700">in Practice</text>
+    <text x="70" y="266" fill="#cbd5e1" font-size="20">Real-life analogies · runnable Python · visual demos</text>
+  </g>
+</svg>
