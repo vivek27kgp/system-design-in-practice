@@ -1,0 +1,10 @@
+[project]
+name = "system-design-in-practice"
+version = "0.1.0"
+description = "Learning system design by building it: LLD → HLD with runnable Python code, real-life analogies, and visualisations."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+# Run from the repo root so imports like `from lld.day01_oop_pillars.shapes import Circle` work.
+pythonpath = ["."]
+testpaths = ["lld"]
